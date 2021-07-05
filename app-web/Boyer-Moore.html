@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- Mickaël BARRAUD 
+mickael.barraud@ac-nantes.fr
+CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+Écrit dans l'optique d'enseigner la recherche textuelle en TNSI
+Mise à jour de Juillet 2021
+https://github.com/MBarraud/NSI/tree/master/rechercheTextuelle
+-->
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Boye-Moore</title>
+    <link rel="stylesheet" type="text/css" href="Boyer-Moore-style.css"/>
+</head>
+<body>
+    <!-- ---------------------------------------------------------------------
+      Menu pour modifier le texte, le motif et l'alphabet
+    ---------------------------------------------------------------------- -->
+    <form id="menu"><div>Choix des éléments de la recherche</div>
+        <div><!-- Texte constiuant la zone de recherche ------------------ -->
+            <label for="texteval">Texte :</label>
+            <input type="text" id="texteval" name="texte_valeur">
+        </div><div><!-- Motif à rechercher dans le texte ----------------- -->
+            <label for="motifval">Motif :</label>
+            <input type="text" id="motifval" name="motif_valeur">
+        </div><div><!-- Motif à rechercher dans le texte ----------------- -->
+            <label for="alphabet">Alphabet :</label>
+            <input type="text" id="alphabet" name="alphabet">
+        </div><div><!-- Boutons de commande ------------------------------ -->
+            <input type="button" id="changeelements" value="Valider" class="bouton" onclick="valide()">
+            <input type="button" id="changeelements" value="Annuler" class="bouton" onclick="annule()">
+    </div></form>
+    <!-- ---------------------------------------------------------------------
+      Contenu de l'application
+    ---------------------------------------------------------------------- -->
+    <main>
+        <div id="outils">⚙</div><!-- Switch entre l'appli et son menu --- -->
+        <h1><span>Fenêtre glissante<span></h1><!-- Titre ----------------- -->
+        <!-- Partie haute : cartes du texte et motif en fenêtre glissante  ---
+        ------------------------------------------------------------------ -->
+        <div id="plateau">
+            <div id="zonei"><!-- Position du jeton i --------------------- -->
+                <div class="jeton indicei invisible"><div>i</div></div>
+            </div><div id="cherche"><!-- Position du texte et du motif --- -->
+                <div id="texte"></div>
+                <div id="cache"><div id="fenetre"></div><div id="motif"></div></div>
+            </div><div id="zonej"><!-- Position du jeton j --------------- -->
+                <div class="jeton indicej invisible"><div>j</div></div>
+            </div>
+        </div>
+        <!-- -- Partie centrale : Les différents boutons de navigation -------
+        ------------------------------------------------------------------ -->
+        <div id="choix"><!-- Indices ON/OFF et choix du sens des tests --- -->
+            <span id="indice" class="invisible">Indice OFF</span>
+            <span id="reverse" class="invisible">&rarr;</span>
+        </div><nav><!-- Boutons principaux -1, retour et +1 -------------- -->
+            <div id="m1">-1</div>
+            <div id="init">&#8617;</div>
+            <div id="p1">+1</div>
+        </nav><div class="centre"><!-- Bascule Manuel/Automatique -------- -->
+            <div id="auto">Tests manuels</div>
+            <input type="checkbox" value="None" id="checkmc" name="mc" class="invisible"/>
+            <input type="checkbox" value="None" id="checkbs" name="bs" class="invisible"/>
+        </div>
+        <!-- ------ Partie basse : Mauvais caractère et Bon suffixe ----------
+        ------------------------------------------------------------------ -->
+        <div class="split2 invisible" id="mc"></div><div class="split2 invisible" id="bs"></div>
+    </main>
+</body>
+<script src="Boyer-Moore-script.js"></script>
+</html>
